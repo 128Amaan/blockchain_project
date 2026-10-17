@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Relief Voucher</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <header><div><p class="eyebrow">ON-CHAIN COMMUNITY AID</p><h1>Community Relief Voucher</h1></div><button id="connectButton">Connect MetaMask</button></header>
+  <main>
+    <section class="status"><span id="networkStatus">Wallet not connected</span><span id="accountStatus">-</span></section>
+    <p id="message" role="alert">Set the contract address in config.js, then connect MetaMask.</p>
+    <div class="grid">
+      <section class="card owner-only"><h2>Register household</h2><form id="registerForm"><input id="householdAddress" placeholder="Household wallet address" required /><input id="householdName" placeholder="Household name" minlength="2" maxlength="80" required /><button>Register</button></form></section>
+      <section class="card owner-only"><h2>Authorize issuer</h2><form id="issuerForm"><input id="issuerAddress" placeholder="Issuer wallet address" required /><label><input type="checkbox" id="issuerAuthorized" checked /> Authorized</label><button>Update issuer</button></form></section>
+      <section class="card issuer-only"><h2>Issue voucher</h2><form id="issueForm"><input id="recipientAddress" placeholder="Recipient wallet address" required /><input id="amount" type="number" min="1" max="1000000" placeholder="Amount (credits)" required /><input id="purpose" maxlength="120" placeholder="Purpose, e.g. groceries" required /><label>Expiry date <input id="expiresAt" type="datetime-local" required /></label><button>Issue voucher</button></form></section>
+      <section class="card"><h2>Redeem a voucher</h2><form id="redeemForm"><input id="voucherId" type="number" min="1" placeholder="Voucher ID" required /><button>Redeem voucher</button></form><p class="hint">Only the registered recipient can redeem an unexpired voucher.</p></section>
+    </div>
+    <section class="card"><div class="card-title"><h2>My vouchers</h2><button id="refreshButton" class="secondary">Refresh</button></div><div id="voucherList" class="voucher-list"><p>Connect your wallet to retrieve on-chain vouchers.</p></div></section>
+  </main>
+  <script src="config.js"></script><script src="app.js"></script>
+</body>
+</html>
